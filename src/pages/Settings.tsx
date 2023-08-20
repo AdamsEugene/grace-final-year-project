@@ -1,11 +1,11 @@
 import { Wrapper } from "../_shared/components/@styles";
 import Sidebar from "../_shared/components/Sidebar";
 
-export default function Home() {
+export default function Settings() {
   return (
     <Wrapper>
       <Sidebar />
-      Hoke
+      Settings
     </Wrapper>
   );
 }

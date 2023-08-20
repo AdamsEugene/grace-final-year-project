@@ -1,9 +1,13 @@
 import { createHashRouter } from "react-router-dom";
 import Home from "../../pages/Home";
 import Report from "../../pages/Report";
-import Export from "../../pages/Export";
 import Login from "../../pages/Login";
 import Signup from "../../pages/Signup";
+import Sound from "../../pages/Sound";
+import Image from "../../pages/Image";
+import Summary from "../../pages/Summary";
+import Settings from "../../pages/Settings";
+import ReportOutlet from "../../pages/ReportOutlet";
 
 const router = createHashRouter([
   {
@@ -12,15 +16,29 @@ const router = createHashRouter([
   },
   {
     path: "report",
-    element: <Report />,
+    element: <ReportOutlet />,
+    children: [
+      {
+        path: "/report",
+        element: <Report />,
+      },
+      {
+        path: "sound",
+        element: <Sound />,
+      },
+      {
+        path: "image",
+        element: <Image />,
+      },
+      {
+        path: "summary",
+        element: <Summary />,
+      },
+    ],
   },
   {
-    path: "export",
-    element: <Export />,
-    // loader: ({ request }) =>
-    //   fetch("/api/dashboard.json", {
-    //     signal: request.signal,
-    //   }),
+    path: "settings",
+    element: <Settings />,
   },
   {
     path: "login",

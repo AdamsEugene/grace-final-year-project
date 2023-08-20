@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
@@ -35,10 +36,12 @@ const GlobalStyle = createGlobalStyle`
       height: 1rem;
     }
     body ::-webkit-scrollbar-thumb {
-      background-image: linear-gradient(${(props) => props.theme.sidebarBackground}, ${(props) =>
-    props.theme.alternateBackground});
-      background-image: linear-gradient(${(props) => props.theme.sidebarBackground}, ${(props) =>
-    props.theme.alternateBackground});
+      background-image: linear-gradient(${(props) =>
+        props.theme.sidebarBackground}, ${(props) =>
+  props.theme.alternateBackground});
+      background-image: linear-gradient(${(props) =>
+        props.theme.sidebarBackground}, ${(props) =>
+  props.theme.alternateBackground});
     }
     body ::-webkit-scrollbar-thumb:hover {
       background-color: ${(props) => props.theme.hoverColor};
@@ -78,57 +81,30 @@ const GlobalStyle = createGlobalStyle`
       color: #131313;
     }
     
-
-    /* React */
-    .react-multiple-carousel__arrow {
-      z-index: 3;
-    }    
-
-    /* Table */
-    .ui.selectable.sortable.very.basic.table.new-table .th {
-      font-size: 15.4354px;
-      letter-spacing: -0.01em;
-      font-family: "Inter";
-      font-weight: 600;
-      background-color: rgba(106, 84, 245, 0.1);
-      color: ${({ theme }) => theme.body};
-    }
-    .ui.sortable.table thead th {
-      font-family: 'Inter' !important;
-      font-style: normal !important;
-      font-weight: 600 !important;
-      font-size: 15.4354px !important;
-      line-height: 15px !important;
-      letter-spacing: -0.01em !important;
-      color: ${({ theme }) => theme.h2Color} !important;
-    }
-    .ui.selectable.sortable.very.basic.table.new-table .tr {
-      cursor: pointer;
-      background: ${({ theme }) => theme.card} !important;
-    }
-    .ui.selectable.sortable.very.basic.table.new-table .tr:hover {
-      background-color: rgba(106, 84, 245, 0.1) !important;
-    }
-    .ui.selectable.sortable.very.basic.table.new-table .page-font-new {
-      font-family: "Inter";
-      font-style: normal;
-      font-weight: 400;
-      font-size: 13.506px;
-      letter-spacing: -0.01em;
-      /* color: ${({ theme }) => theme.card} !important; */
-    }
-    .ui.selectable.sortable.very.basic.table.new-table .page-font-new .content {
-      padding-left: 0px;
-    }
-    .ui.selectable.sortable.very.basic.table.new-table .page-font-new-light {
-      font-family: "Inter";
-      font-style: normal;
-      font-weight: 400;
-      font-size: 13.506px;
-      letter-spacing: -0.01em;
+    .rs-sidenav-default, .rs-sidenav-default .rs-dropdown-toggle, .rs-sidenav-default .rs-sidenav-item, .rs-sidenav-default .rs-sidenav-toggle-button {
+       background: ${(props: any) => props.theme.dashboardBackground};
     }
 
-    
+    .rs-sidenav-default .rs-dropdown .rs-dropdown-toggle:hover, .rs-sidenav-default .rs-dropdown.rs-dropdown-open .rs-dropdown-toggle, .rs-sidenav-default .rs-sidenav-item:hover, .rs-sidenav-default .rs-sidenav-toggle-button:hover {
+      background-color: ${(props) => props.theme.hoverColor};
+    }
+
+    .rs-breadcrumb-item {
+      font-size: 32px;
+    }
+
+    .rs-breadcrumb-separator {
+      font-size: 32px;
+    }
+
+    .rs-panel-bordered {
+      border-color: ${({ theme }) => theme.borderColor};
+      box-shadow: ${({ theme }) => theme.cardShadow};
+    }
+
+    .rs-panel-header {
+      color: ${({ theme }) => theme.subHeading};
+    }
 `;
 
 export default GlobalStyle;
