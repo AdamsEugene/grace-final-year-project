@@ -5,7 +5,7 @@ import useTheme from "../hooks/useTheme";
 import { DivCursor } from "./@styles";
 
 interface Props {
-  name: string;
+  name?: string;
 }
 
 export default function Bread({ name }: Props) {
@@ -14,9 +14,9 @@ export default function Bread({ name }: Props) {
   return (
     <Stack justifyContent="space-between">
       <Stack.Item>
-        <Breadcrumb separator={<ArrowRightLineIcon />}>
-          <Breadcrumb.Item href="/">Home</Breadcrumb.Item>
-          <Breadcrumb.Item active>{name}</Breadcrumb.Item>
+        <Breadcrumb separator={name ? <ArrowRightLineIcon /> : null}>
+          <Breadcrumb.Item href="/#/">Home</Breadcrumb.Item>
+          {name ? <Breadcrumb.Item active>{name}</Breadcrumb.Item> : null}
         </Breadcrumb>
       </Stack.Item>
       <Stack.Item>

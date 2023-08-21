@@ -1,3 +1,11 @@
+import { PageWrapper } from "../_shared/components/@styles";
+import Bread from "../_shared/components/Bread";
+
 export default function Image() {
-  return <div>Image</div>;
+  return (
+    <PageWrapper>
+      <Bread name="Image" />
+      Image
+    </PageWrapper>
+  );
 }

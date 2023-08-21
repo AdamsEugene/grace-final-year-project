@@ -6,8 +6,8 @@ export const Wrapper = styled.div`
 `;
 
 export const PageWrapper = styled.div`
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   padding: 32px;
 `;
 
@@ -26,4 +26,22 @@ export const BigImageWrapper = styled.div`
 
 export const DivCursor = styled.div`
   cursor: pointer;
+`;
+
+export const NeedleWrapper = styled.div`
+  margin-top: -84px !important;
+  margin-right: -24px;
+`;
+
+export const BottomCardWrapper = styled.div`
+  display: flex;
+  gap: 32px;
+`;
+
+export const BottomCardIcon = styled.div``;
+
+export const CenterPage = styled(PageWrapper)`
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;

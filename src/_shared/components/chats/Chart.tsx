@@ -77,7 +77,7 @@ export const Chart: React.FC<IProps> = (props) => {
           width={730}
           height={250}
           data={data}
-          margin={{ top: 10, right: 10, left: 0, bottom: 0 }}
+          margin={{ top: 10, right: 10, left: 0, bottom: 10 }}
         >
           {FillGradientColor(stroke1, stroke2)}
           <CartesianGrid
