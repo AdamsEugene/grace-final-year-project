@@ -25,6 +25,7 @@ interface IProps {
   stroke1: string;
   stroke2: string;
   data: IData[];
+  aspect?: number;
   header?: React.ReactNode;
 }
 
@@ -64,7 +65,7 @@ const FillGradientColor = (stroke1: string, stroke2: string) => (
 );
 
 export const Chart: React.FC<IProps> = (props) => {
-  const { type, stroke1, stroke2, header, data } = props;
+  const { type, stroke1, stroke2, header, data, aspect } = props;
 
   const ChatType = type === "area" ? AreaChart : LineChart;
   const ChartLine = type === "area";
@@ -72,12 +73,12 @@ export const Chart: React.FC<IProps> = (props) => {
   return (
     <ChartWrapper>
       {header}
-      <ResponsiveContainer width="100%" aspect={9 / 3.8}>
+      <ResponsiveContainer width="100%" aspect={aspect || 9 / 3.8}>
         <ChatType
           width={730}
           height={250}
           data={data}
-          margin={{ top: 10, right: 10, left: 0, bottom: 10 }}
+          margin={{ top: 10, right: 10, left: 0, bottom: 20 }}
         >
           {FillGradientColor(stroke1, stroke2)}
           <CartesianGrid

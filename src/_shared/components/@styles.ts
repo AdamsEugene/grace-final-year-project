@@ -45,3 +45,7 @@ export const CenterPage = styled(PageWrapper)`
   justify-content: center;
   align-items: center;
 `;
+
+export const HeaderText = styled.h4``;
+
+export const ContentText = styled.p``;

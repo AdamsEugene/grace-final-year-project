@@ -30,7 +30,7 @@ const Sidebar = () => {
             </Nav.Item>
             <Nav.Menu eventKey="3" title="Report" icon={<MagicIcon />}>
               <Nav.Item eventKey="3-1" onClick={() => goto("/report")}>
-                Report
+                Overview
               </Nav.Item>
               <Nav.Item eventKey="3-2" onClick={() => goto("/report/sound")}>
                 Sound
