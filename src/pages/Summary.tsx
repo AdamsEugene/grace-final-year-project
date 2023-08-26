@@ -48,24 +48,24 @@ export default function Summary() {
                     <HeaderText>Header</HeaderText>
                     {type === "blue" ? (
                       <ContentText>
-                        Lorem ipsum dolor sit, amet consectetur adipisicing
-                        elit. Illo corporis quibusdam recusandae vero eum
-                        distinctio nulla facilis ullam, neque laborum repellat
-                        deleniti beatae in eos commodi vel omnis, totam nemo?
+                        The sound levels recorded have consistently remained within the established baseline, reflecting the absence of 
+                        any unusual or anomalous sounds that could be associated with illegal mining or any unauthorized activities. 
+                        This reassuring outcome is a testament to the effectiveness of our state-of-the-art monitoring technolo
+
                       </ContentText>
                     ) : type === "green" ? (
                       <ContentText>
-                        Lorem ipsum dolor sit, amet consectetur adipisicing
-                        elit. Illo corporis quibusdam recusandae vero eum
-                        distinctio nulla facilis ullam, neque laborum repellat
-                        deleniti beatae in eos commodi vel omnis, totam nemo?
+                        While the acoustic readings are not indicating an alarming or critical situation, 
+                        the moderate activity recorded suggests a heightened presence of sound sources within the monitored region. This could potentially be attributed to various factors,
+                         such as natural phenomena or non-threatening human activities.
                       </ContentText>
                     ) : (
                       <ContentText>
-                        Lorem ipsum dolor sit, amet consectetur adipisicing
-                        elit. Illo corporis quibusdam recusandae vero eum
-                        distinctio nulla facilis ullam, neque laborum repellat
-                        deleniti beatae in eos commodi vel omnis, totam nemo?
+                        This critical acoustic activity is indicative of potentially harmful and unlawful activities, 
+                        possibly related to illegal mining operations.The readings from our advanced microphone
+                         technology have registered an alarming level of sound that requires immediate attention and action.
+
+
                       </ContentText>
                     )}
                   </Column16>
