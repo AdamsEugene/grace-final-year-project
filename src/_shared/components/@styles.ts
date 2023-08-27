@@ -18,6 +18,7 @@ export const Column16 = styled.div`
 `;
 
 export const BigImageWrapper = styled.div`
+  position: relative;
   .rs-avatar > .rs-avatar-image {
     height: 100%;
     width: 100%;
@@ -61,41 +62,41 @@ export const LoadingWrapper = styled.div`
 `;
 
 export const EnvironmentInfoContainer = styled.div`
-background-color: #f2f2f2;
-padding: 20px;
-border: 1px solid #ccc;
-border-radius: 8px;
-margin: 20px 0;
+  background-color: #f2f2f2;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin: 20px 0;
 
-p {
-  margin-bottom: 15px;
-  font-size: 16px;
-  line-height: 1.6;
-}
+  p {
+    margin-bottom: 15px;
+    font-size: 16px;
+    line-height: 1.6;
+  }
 `;
 export const AcousticActivityContainer = styled.div`
-background-color: #f2f2f2;
-padding: 20px;
-border: 1px solid #ccc;
-border-radius: 8px;
-margin: 20px 0;
+  background-color: #f2f2f2;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin: 20px 0;
 
-p {
-  margin-bottom: 15px;
-  font-size: 16px;
-  line-height: 1.6;
-}
+  p {
+    margin-bottom: 15px;
+    font-size: 16px;
+    line-height: 1.6;
+  }
 `;
 export const AlertContainer = styled.div`
-background-color: #f2f2f2;
-padding: 20px;
-border: 1px solid #ccc;
-border-radius: 8px;
-margin: 20px 0;
+  background-color: #f2f2f2;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin: 20px 0;
 
-.alert-text {
-  margin-bottom: 15px;
-  font-size: 16px;
-  line-height: 1.6;
-}
+  .alert-text {
+    margin-bottom: 15px;
+    font-size: 16px;
+    line-height: 1.6;
+  }
 `;

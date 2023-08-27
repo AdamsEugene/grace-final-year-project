@@ -1,9 +1,17 @@
-import { Avatar } from "rsuite";
+import { Avatar, Loader } from "rsuite";
 import { BigImageWrapper, PageWrapper } from "../_shared/components/@styles";
 import Bread from "../_shared/components/Bread";
 import Card from "../_shared/components/Card";
+import useImage from "../_shared/hooks/useImage";
+import ObjectDetect from "../_shared/components/ObjectDetect";
 
 export default function Image() {
+  const { photos, loadingImg, model, predictionModel } = useImage();
+
+  const _img = document.getElementById("img") as HTMLImageElement;
+  if (_img)
+    _img.src = `https://tse4.mm.bing.net/th?id=OIP.xSCWDcWUki2Nsq08JJSVigHaE2&pid=Api&P=0&h=180`;
+
   return (
     <PageWrapper>
       <Bread name="Image" />
@@ -11,11 +19,41 @@ export default function Image() {
         title="Live Video Recording"
         children={
           <BigImageWrapper>
-            <Avatar
-              src="https://cnhi-p-001-delivery.sitecorecontenthub.cloud/api/public/content/ce3cfef0e202437d9eed017f6c149913?v=854baeac"
-              alt="@superman66"
-              style={{ height: "730px", width: "100%" }}
-            />
+            {!loadingImg ? (
+              <ObjectDetect
+                img={_img}
+                model={model}
+                predictionModel={predictionModel}
+                long
+              />
+            ) : (
+              <>
+                <div
+                  style={{
+                    position: "absolute",
+                    top: "0px",
+                    left: "0px",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    height: "730px",
+                    width: "100%",
+                    zIndex: 99,
+                  }}
+                >
+                  <Loader
+                    size="lg"
+                    content="Loading image detection model"
+                    vertical
+                  />
+                </div>
+                <Avatar
+                  src={`data:image/png;base64,${photos[photos.length - 1]}`}
+                  alt="@superman66"
+                  style={{ height: "730px", width: "100%" }}
+                />
+              </>
+            )}
           </BigImageWrapper>
         }
         style={{ height: "85vh" }}

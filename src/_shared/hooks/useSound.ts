@@ -58,7 +58,11 @@ export default function useSound() {
     [soundData]
   );
 
-  const aggregateSound = { maxDecibels, minDecibels, averageDecibels };
+  const aggregateSound = {
+    maxDecibels,
+    minDecibels,
+    averageDecibels: (averageDecibels / 100) * 150,
+  };
 
   /* eslint-disable @typescript-eslint/no-explicit-any */
   const handleDataChange = (value: any) => {

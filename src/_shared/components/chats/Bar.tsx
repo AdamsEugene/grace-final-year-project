@@ -11,51 +11,6 @@ import {
 
 const colors = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042", "red", "pink"];
 
-const data = [
-  {
-    name: "Page A",
-    uv: 4000,
-    pv: 2400,
-    amt: 2400,
-  },
-  {
-    name: "Page B",
-    uv: 3000,
-    pv: 1398,
-    amt: 2210,
-  },
-  {
-    name: "Page C",
-    uv: 2000,
-    pv: 9800,
-    amt: 2290,
-  },
-  {
-    name: "Page D",
-    uv: 2780,
-    pv: 3908,
-    amt: 2000,
-  },
-  {
-    name: "Page E",
-    uv: 1890,
-    pv: 4800,
-    amt: 2181,
-  },
-  {
-    name: "Page F",
-    uv: 2390,
-    pv: 3800,
-    amt: 2500,
-  },
-  {
-    name: "Page G",
-    uv: 3490,
-    pv: 4300,
-    amt: 2100,
-  },
-];
-
 const getPath = (x: any, y: any, width: any, height: any) => {
   return `M${x},${y + height}C${x + width / 3},${y + height} ${x + width / 2},${
     y + height / 3
@@ -73,13 +28,20 @@ const TriangleBar = (props: any) => {
   return <path d={getPath(x, y, width, height)} stroke="none" fill={fill} />;
 };
 
-export default function BarChat() {
+interface Props {
+  result?: {
+    name: string;
+    score: number;
+  }[];
+}
+
+export default function BarChat({ result }: Props) {
   return (
     <ResponsiveContainer width="100%" aspect={9 / 3.9}>
       <BarChart
         width={500}
         height={300}
-        data={data}
+        data={result}
         margin={{
           top: 20,
           right: 30,
@@ -91,12 +53,12 @@ export default function BarChat() {
         <XAxis dataKey="name" />
         <YAxis />
         <Bar
-          dataKey="uv"
+          dataKey="score"
           fill="#8884d8"
           shape={<TriangleBar />}
           label={{ position: "top" }}
         >
-          {data.map((_, index) => (
+          {result?.map((_, index) => (
             <Cell key={`cell-${index}`} fill={colors[index % 20]} />
           ))}
         </Bar>

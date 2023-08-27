@@ -23,7 +23,7 @@ function App() {
   if (user === "adams") {
     return (
       <div style={{ height: "100vh", background: "#ffffff" }}>
-        <Loader center content="loading..." size="lg" />
+        <Loader center content="loading..." size="lg" vertical />
       </div>
     );
   }

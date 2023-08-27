@@ -18,9 +18,18 @@ import Needle from "../_shared/components/chats/Needle";
 import Bar from "../_shared/components/chats/Bar";
 import BottomCard from "../_shared/components/BottomCard";
 import useSound from "../_shared/hooks/useSound";
+import useImage from "../_shared/hooks/useImage";
+import ObjectDetect from "../_shared/components/ObjectDetect";
 
 export default function Report() {
   const { soundData, aggregateSound, handleDataChange, loading } = useSound();
+
+  const { photos, model, predictionModel, loadingImg, getPredictions, result } =
+    useImage();
+
+  const _img = document.getElementById("img") as HTMLImageElement;
+  if (_img)
+    _img.src = `https://tse4.mm.bing.net/th?id=OIP.xSCWDcWUki2Nsq08JJSVigHaE2&pid=Api&P=0&h=180`;
 
   return (
     <PageWrapper>
@@ -49,11 +58,43 @@ export default function Report() {
               title="Live Video Recording"
               children={
                 <BigImageWrapper>
-                  <Avatar
-                    src="https://cnhi-p-001-delivery.sitecorecontenthub.cloud/api/public/content/ce3cfef0e202437d9eed017f6c149913?v=854baeac"
-                    alt="@superman66"
-                    style={{ height: "440px", width: "100%" }}
-                  />
+                  {!loadingImg ? (
+                    <ObjectDetect
+                      img={_img}
+                      model={model}
+                      predictionModel={predictionModel}
+                      getPredictions={getPredictions}
+                    />
+                  ) : (
+                    <>
+                      <div
+                        style={{
+                          position: "absolute",
+                          top: "0px",
+                          left: "0px",
+                          display: "flex",
+                          justifyContent: "center",
+                          alignItems: "center",
+                          height: "440px",
+                          width: "100%",
+                          zIndex: 99,
+                        }}
+                      >
+                        <Loader
+                          size="lg"
+                          content="Loading image detection model"
+                          vertical
+                        />
+                      </div>
+                      <Avatar
+                        src={`data:image/png;base64,${
+                          photos[photos.length - 1]
+                        }`}
+                        alt="@superman66"
+                        style={{ height: "440px", width: "100%" }}
+                      />
+                    </>
+                  )}
                 </BigImageWrapper>
               }
               style={{ height: "55vh" }}
@@ -85,12 +126,12 @@ export default function Report() {
               title="Image"
               children={
                 <BottomCard Icon={AiFillCamera}>
-                  {loading ? (
+                  {loadingImg ? (
                     <LoadingWrapper>
                       <Loader size="lg" />
                     </LoadingWrapper>
                   ) : (
-                    <Bar />
+                    <Bar result={result} />
                   )}
                 </BottomCard>
               }
@@ -101,8 +142,11 @@ export default function Report() {
             <Card
               title="Inference"
               children={
-                <BottomCard Icon={MdReport}>
-                  {loading ? (
+                <BottomCard
+                  Icon={MdReport}
+                  value={aggregateSound.averageDecibels}
+                >
+                  {loadingImg ? (
                     <LoadingWrapper>
                       <Loader size="lg" />
                     </LoadingWrapper>
@@ -118,6 +162,7 @@ export default function Report() {
           </Stack.Item>
         </Stack>
       </Column16>
+      <img id="img" height={400} hidden crossOrigin="anonymous" />
     </PageWrapper>
   );
 }
