@@ -94,15 +94,15 @@ export default function PDF({ data, info }: { data: any; info: any }) {
             </Text>
           </Text>
           <Text style={styles.space}>
-            <Text style={styles.key}>Average Decibel &nbsp;&nbsp;:</Text>
+            <Text style={styles.key}>Average Decibel: &nbsp;&nbsp;</Text>
             <Text style={styles.value}>{info.averageDecibels}</Text>
           </Text>
           <Text style={styles.space}>
-            <Text style={styles.key}>Minimum Decibel &nbsp;&nbsp;:</Text>
+            <Text style={styles.key}>Minimum Decibel: &nbsp;&nbsp;</Text>
             <Text style={styles.value}>{info.minDecibels}</Text>
           </Text>
           <Text style={styles.space}>
-            <Text style={styles.key}>Maximum Decibel &nbsp;&nbsp;:</Text>
+            <Text style={styles.key}>Maximum Decibel: &nbsp;&nbsp;</Text>
             <Text style={styles.value}>{info.maxDecibels}</Text>
           </Text>
         </View>

@@ -159,7 +159,7 @@ const GlobalStyle = createGlobalStyle`
   /* LIST */
   .rs-list-item, .rs-list {
     background: transparent !important;
-    border-color:${({ theme }) => theme.border} !important;
+    border-color: ${({ theme }) => theme.border} !important;
     box-shadow:none !important;
   }
 
@@ -168,7 +168,18 @@ const GlobalStyle = createGlobalStyle`
     animation: placeholder-active 3s ease infinite;
     background: ${({ theme }) =>
       `linear-gradient(-45deg, ${theme.hoverColor} 25%,${theme.dashboardBackground} 37%,${theme.sidebarShadow} 63%)`};
-}
+  }
+
+  .rs-table-hover .rs-table-row:hover .rs-table-cell, .rs-table-hover .rs-table-row:hover .rs-table-cell-group, .rs-table-row-expanded, .rs-table-row-header, .rs-table-row-header .rs-table-cell {
+    color: ${({ theme }) => theme.h2Color} !important;
+    background-color: ${({ theme }) => theme.tableHover} !important;
+  }
+
+  .rs-table-cell {
+    background-color: ${({ theme }) => theme.background} !important;
+    border-bottom: 1px solid ${({ theme }) => theme.border} !important;
+    color: ${({ theme }) => theme.h2Color} !important
+  }
 `;
 
 export default GlobalStyle;

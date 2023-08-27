@@ -38,19 +38,19 @@ const CustomTooltip = (props: any) => {
 
   return (
     <ToolTipWrapper>
+      <MiniTitle>Readings on:</MiniTitle>
       <MiniTitle>
-        Readings on:{" "}
         {moment(payload?.[0]?.payload?.timestamp).format(
           "MMMM Do YYYY, h:mm:ss a"
         )}
       </MiniTitle>
       <MainTitle>
         <Circle bgColor={payload?.[0]?.color} />
-        {payload?.[0]?.payload?.Decibels} Db
+        {payload?.[0]?.payload?.Decibels} Decibel
       </MainTitle>
       <MainTitle>
         <Circle bgColor={payload?.[1]?.color} />
-        {(props.average as number).toFixed(2)} Avg
+        {(props.average as number).toFixed(2)} Average
       </MainTitle>
     </ToolTipWrapper>
   );
@@ -184,7 +184,7 @@ const Circle = styled.div<{ bgColor: string }>`
   box-sizing: border-box;
   width: 24px;
   height: 24px;
-  background: ${({ bgColor }) => bgColor};
+  background: ${({ bgColor }) => bgColor || "#39f"};
   border: 3.78904px solid #fcfcfc;
   box-shadow: 0px 2.52603px 2.52603px rgba(50, 50, 71, 0.06),
     0px 2.52603px 5.05206px rgba(50, 50, 71, 0.06);

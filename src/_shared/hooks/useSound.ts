@@ -63,8 +63,10 @@ export default function useSound() {
   /* eslint-disable @typescript-eslint/no-explicit-any */
   const handleDataChange = (value: any) => {
     setLoading(true);
-    if (!value) setSoundData(allData);
-    else {
+    if (!value) {
+      setSoundData(allData);
+      setLoading(false);
+    } else {
       const from = new Date(value[0]).valueOf();
       const to = new Date(value[1]).valueOf();
 
@@ -73,8 +75,8 @@ export default function useSound() {
       );
 
       setSoundData(newData);
+      setLoading(false);
     }
-    setLoading(false);
   };
 
   useEffect(() => {

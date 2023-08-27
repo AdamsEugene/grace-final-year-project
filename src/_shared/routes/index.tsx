@@ -1,4 +1,5 @@
-import { createHashRouter } from "react-router-dom";
+import { PropsWithChildren } from "react";
+import { createHashRouter, useNavigate } from "react-router-dom";
 import Home from "../../pages/Home";
 import Report from "../../pages/Report";
 import Login from "../../pages/Login";
@@ -8,45 +9,63 @@ import Image from "../../pages/Image";
 import Summary from "../../pages/Summary";
 import Settings from "../../pages/Settings";
 import ReportOutlet from "../../pages/ReportOutlet";
+import { IsLogin } from "../services/authCheck";
+
+// eslint-disable-next-line react-refresh/only-export-components
+const CheckRoute = (props: PropsWithChildren) => {
+  const { isIn } = IsLogin();
+
+  return isIn ? props.children : <Login />;
+};
+
+// eslint-disable-next-line react-refresh/only-export-components
+const Back = (props: PropsWithChildren) => {
+  const { children } = props;
+  const navigate = useNavigate();
+
+  const { isIn } = IsLogin();
+  if (isIn) navigate("/");
+  return children;
+};
 
 const router = createHashRouter([
   {
     path: "/",
-    element: <Home />,
+    element: <CheckRoute children={<Home />} />,
   },
   {
     path: "report",
-    element: <ReportOutlet />,
+    element: <CheckRoute children={<ReportOutlet />} />,
     children: [
       {
         path: "/report",
-        element: <Report />,
+        element: <CheckRoute children={<Report />} />,
       },
       {
         path: "sound",
-        element: <Sound />,
+        element: <CheckRoute children={<Sound />} />,
       },
       {
         path: "image",
-        element: <Image />,
+        element: <CheckRoute children={<Image />} />,
       },
       {
         path: "summary",
-        element: <Summary />,
+        element: <CheckRoute children={<Summary />} />,
       },
     ],
   },
   {
     path: "settings",
-    element: <Settings />,
+    element: <CheckRoute children={<Settings />} />,
   },
   {
     path: "login",
-    element: <Login />,
+    element: <Back children={<Login />} />,
   },
   {
     path: "signup",
-    element: <Signup />,
+    element: <Back children={<Signup />} />,
   },
 ]);
 

@@ -1,15 +1,41 @@
-import { Sidenav, Nav } from "rsuite";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { Sidenav, Nav, toaster, Message } from "rsuite";
 import DashboardIcon from "@rsuite/icons/legacy/Dashboard";
 import MagicIcon from "@rsuite/icons/legacy/Magic";
 import GearCircleIcon from "@rsuite/icons/legacy/GearCircle";
 import ExitIcon from "@rsuite/icons/Exit";
 import { useNavigate } from "react-router-dom";
+import { auth } from "../services/fireBase";
+import { signOut } from "firebase/auth";
 
 const Sidebar = () => {
   const navigate = useNavigate();
 
   const goto = (path: string) => {
     navigate(path);
+  };
+
+  const message = (message: string, type: any) => {
+    return (
+      <Message showIcon type={type} closable>
+        {message}
+      </Message>
+    );
+  };
+
+  const _signOut = () => {
+    auth.currentUser &&
+      signOut(auth)
+        .then(() => {
+          navigate("/login", { replace: true });
+        })
+        .catch((error) => {
+          toaster.push(message("Unable to log out. Try again later", "error"), {
+            placement: "topEnd",
+            duration: 5000,
+          });
+          console.log(error);
+        });
   };
 
   return (
@@ -42,11 +68,7 @@ const Sidebar = () => {
               <Nav.Item eventKey="4-1" onClick={() => goto("/settings")}>
                 User
               </Nav.Item>
-              <Nav.Item
-                eventKey="4-2"
-                icon={<ExitIcon />}
-                onClick={() => goto("/logout")}
-              >
+              <Nav.Item eventKey="4-2" icon={<ExitIcon />} onClick={_signOut}>
                 Logout
               </Nav.Item>
             </Nav.Menu>
