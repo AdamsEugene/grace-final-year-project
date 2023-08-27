@@ -162,6 +162,13 @@ const GlobalStyle = createGlobalStyle`
     border-color:${({ theme }) => theme.border} !important;
     box-shadow:none !important;
   }
+
+  .rs-placeholder-active .rs-placeholder-grid-col>p, .rs-placeholder-active .rs-placeholder-paragraph-graph-image, .rs-placeholder-active .rs-placeholder-paragraph-rows>p, .rs-placeholder-active.rs-placeholder-graph {
+    -webkit-animation: placeholder-active 3s ease infinite;
+    animation: placeholder-active 3s ease infinite;
+    background: ${({ theme }) =>
+      `linear-gradient(-45deg, ${theme.hoverColor} 25%,${theme.dashboardBackground} 37%,${theme.sidebarShadow} 63%)`};
+}
 `;
 
 export default GlobalStyle;

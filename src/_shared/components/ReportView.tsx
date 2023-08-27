@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React from "react";
-import { Panel, FlexboxGrid, DateRangePicker, Stack, Button } from "rsuite";
+import { useMemo } from "react";
+import { Panel, FlexboxGrid, Stack, Button } from "rsuite";
 import { AiOutlineFilePdf } from "react-icons/ai";
 import { Icon } from "@rsuite/icons";
 import { Message, useToaster } from "rsuite";
@@ -8,15 +8,20 @@ import { Message, useToaster } from "rsuite";
 import CustomTable from "./CustomTable";
 import { print } from "../services/printService";
 import PDF from "./Pdf";
-import { useLocation } from "react-router-dom";
 import moment from "moment";
+import { Sound } from "../hooks/useSound";
 
-export default function ReportView() {
-  const location = useLocation();
+interface Props {
+  soundData: Sound[];
+  aggregateSound: {
+    maxDecibels: number;
+    minDecibels: number;
+    averageDecibels: number;
+  };
+}
+
+export default function ReportView({ soundData, aggregateSound }: Props) {
   const toaster = useToaster();
-  const [data, setData] = React.useState<any[]>([]);
-  const [dataToRender, setDataToRender] = React.useState([]);
-  const [dataToRenderNew, setDataToRenderNew] = React.useState<any>([]);
 
   const message = (
     <Message showIcon type={"success"} closable>
@@ -24,32 +29,20 @@ export default function ReportView() {
     </Message>
   );
 
-  React.useEffect(() => {
-    setData(location.state?.data);
-  }, [location.state?.data]);
+  console.log(soundData);
 
-  React.useEffect(() => {
-    setDataToRender(
-      (dataToRenderNew || data)?.map((d: any, i: any) => ({
-        ...d,
-        timestamp: moment(d.timestamp).format("MMMM Do YYYY, h:mm:ss a"),
-        id: i + 1,
-        remark: d.Decibels >= 80 ? "Loud" : d.Decibels <= "Low" ? "Low" : "Low",
-      }))
-    );
-  }, [data, dataToRenderNew]);
+  const dataToRender = useMemo(() => {
+    return soundData.map((d, i) => ({
+      timestamp: moment(d.timestamp).format("MMMM Do YYYY, h:mm:ss a"),
+      id: i + 1,
+      remark: d.Decibels >= 80 ? "Loud" : d.Decibels <= 50 ? "Okay" : "Low",
+      Decibels: d.Decibels,
+    }));
+  }, [soundData]);
 
   const onPrint = () => {
-    print(<PDF data={dataToRender} />, () =>
+    print(<PDF data={dataToRender} info={aggregateSound} />, () =>
       toaster.push(message, { placement: "topEnd", duration: 5000 })
-    );
-  };
-
-  const handleDataChange = (value: any) => {
-    const from = new Date(value[0]).valueOf();
-    const to = new Date(value[1]).valueOf();
-    setDataToRenderNew(
-      data.filter((d: any) => d.timestamp >= from && d.timestamp <= to)
     );
   };
 
@@ -57,14 +50,7 @@ export default function ReportView() {
     <Panel
       header={
         <Stack justifyContent="space-between">
-          <Stack spacing={16}>
-            <h5>Select Data</h5>
-            <DateRangePicker
-              format="yyyy-MM-dd HH:mm:ss"
-              defaultCalendarValue={[new Date(), new Date()]}
-              onChange={handleDataChange}
-            />
-          </Stack>
+          <Stack spacing={16}></Stack>
           <Button
             color="blue"
             appearance="primary"

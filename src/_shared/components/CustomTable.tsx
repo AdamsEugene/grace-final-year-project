@@ -31,22 +31,22 @@ export default function CustomTable({ data }: { data: any }) {
   return (
     <TableWrapper>
       <Table height={560} data={newData} width={800} loading={loading}>
-        <Column width={50} align="center" resizable>
+        <Column width={50} align="center">
           <HeaderCell>Id</HeaderCell>
           <Cell dataKey="id" />
         </Column>
 
-        <Column width={200} resizable>
+        <Column width={300}>
           <HeaderCell>Time</HeaderCell>
           <Cell dataKey="timestamp" />
         </Column>
 
-        <Column width={200} resizable>
+        <Column width={200}>
           <HeaderCell>Decibels</HeaderCell>
           <Cell dataKey="Decibels" />
         </Column>
 
-        <Column width={200} resizable>
+        <Column flexGrow={1}>
           <HeaderCell>Remarks</HeaderCell>
           <Cell dataKey="remark" />
         </Column>

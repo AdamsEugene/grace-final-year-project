@@ -22,7 +22,23 @@ const styles = StyleSheet.create({
     flexDirection: "row",
   },
   tableCol: {
-    width: "25%",
+    width: "27%",
+    borderStyle: "solid",
+    borderColor: "#ccc",
+    borderWidth: 1,
+    borderLeftWidth: 0,
+    borderTopWidth: 0,
+  },
+  tableColDate: {
+    width: "36%",
+    borderStyle: "solid",
+    borderColor: "#ccc",
+    borderWidth: 1,
+    borderLeftWidth: 0,
+    borderTopWidth: 0,
+  },
+  tableColId: {
+    width: "10%",
     borderStyle: "solid",
     borderColor: "#ccc",
     borderWidth: 1,
@@ -45,26 +61,26 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     textAlign: "center",
     gap: 16,
+    marginBottom: 8,
   },
   key: {
     fontSize: 10,
     color: "#444",
-    marginRight: 16,
+    marginRight: 32,
   },
   value: {
     fontSize: 10,
-    color: "#313030",
+    color: "#1b1919",
+    fontWeight: "bold",
   },
 });
 
-export default function PDF({ data }: { data: any }) {
+export default function PDF({ data, info }: { data: any; info: any }) {
   const newData = data?.map((d: any, i: any) => ({
     ...d,
     id: i,
-    remark: d.Decibels >= 80 ? "Faild" : d.Decibels <= 50 ? "Nice" : "Good",
+    remark: d.Decibels >= 80 ? "Failed" : d.Decibels <= 50 ? "Nice" : "Good",
   }));
-
-  console.log(data);
 
   return (
     <Document>
@@ -77,13 +93,25 @@ export default function PDF({ data }: { data: any }) {
               {moment(Date.now()).format("MMM Do YY")}
             </Text>
           </Text>
+          <Text style={styles.space}>
+            <Text style={styles.key}>Average Decibel &nbsp;&nbsp;:</Text>
+            <Text style={styles.value}>{info.averageDecibels}</Text>
+          </Text>
+          <Text style={styles.space}>
+            <Text style={styles.key}>Minimum Decibel &nbsp;&nbsp;:</Text>
+            <Text style={styles.value}>{info.minDecibels}</Text>
+          </Text>
+          <Text style={styles.space}>
+            <Text style={styles.key}>Maximum Decibel &nbsp;&nbsp;:</Text>
+            <Text style={styles.value}>{info.maxDecibels}</Text>
+          </Text>
         </View>
         <View style={styles.table}>
           <View style={styles.tableRow}>
-            <View style={styles.tableCol}>
+            <View style={styles.tableColId}>
               <Text style={styles.tableCell}>ID</Text>
             </View>
-            <View style={styles.tableCol}>
+            <View style={styles.tableColDate}>
               <Text style={styles.tableCell}>DATE</Text>
             </View>
             <View style={styles.tableCol}>
@@ -95,10 +123,10 @@ export default function PDF({ data }: { data: any }) {
           </View>
           {newData.map((row: any) => (
             <View key={row.id} style={styles.tableRow}>
-              <View style={styles.tableCol}>
+              <View style={styles.tableColId}>
                 <Text style={styles.tableCell}>{row.id}</Text>
               </View>
-              <View style={styles.tableCol}>
+              <View style={styles.tableColDate}>
                 <Text style={styles.tableCell}>{row.timestamp}</Text>
               </View>
               <View style={styles.tableCol}>

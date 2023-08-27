@@ -1,4 +1,4 @@
-import { Avatar, Stack } from "rsuite";
+import { Avatar, Loader, Stack } from "rsuite";
 import { GiOldMicrophone } from "react-icons/gi";
 import { AiFillCamera } from "react-icons/ai";
 import { MdReport } from "react-icons/md";
@@ -6,6 +6,7 @@ import { MdReport } from "react-icons/md";
 import {
   BigImageWrapper,
   Column16,
+  LoadingWrapper,
   NeedleWrapper,
   PageWrapper,
 } from "../_shared/components/@styles";
@@ -19,8 +20,7 @@ import BottomCard from "../_shared/components/BottomCard";
 import useSound from "../_shared/hooks/useSound";
 
 export default function Report() {
-  const { soundData, aggregateSound, filterSoundByTime } = useSound();
-  // console.log(soundData);
+  const { soundData, aggregateSound, handleDataChange, loading } = useSound();
 
   return (
     <PageWrapper>
@@ -30,9 +30,12 @@ export default function Report() {
           <Stack.Item flex={2}>
             <Card
               title="Live Sound Recording"
+              handleDataChange={handleDataChange}
               children={
                 <Chart
+                  average={aggregateSound.averageDecibels}
                   data={soundData}
+                  loading={loading}
                   type="area"
                   stroke1="#39C272"
                   stroke2="#6A54F5"
@@ -63,9 +66,15 @@ export default function Report() {
               title="Sound"
               children={
                 <BottomCard Icon={GiOldMicrophone}>
-                  <div style={{ marginTop: "-12px" }}>
-                    <ActiveShape />
-                  </div>
+                  {loading ? (
+                    <LoadingWrapper>
+                      <Loader size="lg" />
+                    </LoadingWrapper>
+                  ) : (
+                    <div style={{ marginTop: "-12px" }}>
+                      <ActiveShape {...aggregateSound} />
+                    </div>
+                  )}
                 </BottomCard>
               }
               style={{ height: "28vh" }}
@@ -76,7 +85,13 @@ export default function Report() {
               title="Image"
               children={
                 <BottomCard Icon={AiFillCamera}>
-                  <Bar />
+                  {loading ? (
+                    <LoadingWrapper>
+                      <Loader size="lg" />
+                    </LoadingWrapper>
+                  ) : (
+                    <Bar />
+                  )}
                 </BottomCard>
               }
               style={{ height: "28vh" }}
@@ -87,9 +102,15 @@ export default function Report() {
               title="Inference"
               children={
                 <BottomCard Icon={MdReport}>
-                  <NeedleWrapper>
-                    <Needle />
-                  </NeedleWrapper>
+                  {loading ? (
+                    <LoadingWrapper>
+                      <Loader size="lg" />
+                    </LoadingWrapper>
+                  ) : (
+                    <NeedleWrapper>
+                      <Needle value={aggregateSound.averageDecibels} />
+                    </NeedleWrapper>
+                  )}
                 </BottomCard>
               }
               style={{ height: "28vh" }}

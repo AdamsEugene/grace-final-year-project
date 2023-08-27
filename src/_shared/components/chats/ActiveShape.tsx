@@ -1,13 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { PureComponent } from "react";
+import { useState } from "react";
 import { PieChart, Pie, Sector } from "recharts";
 
-const data = [
-  { name: "Group A", value: 400 },
-  { name: "Group B", value: 300 },
-  { name: "Group C", value: 300 },
-  { name: "Group D", value: 200 },
-];
+interface Props {
+  maxDecibels: number;
+  minDecibels: number;
+  averageDecibels: number;
+}
 
 const renderActiveShape = (props: any) => {
   const RADIAN = Math.PI / 180;
@@ -35,7 +34,7 @@ const renderActiveShape = (props: any) => {
   const textAnchor = cos >= 0 ? "start" : "end";
 
   return (
-    <g>
+    <g style={{ zIndex: 9999 }}>
       <text x={cx} y={cy} dy={8} textAnchor="middle" fill={fill}>
         {payload.name}
       </text>
@@ -82,36 +81,34 @@ const renderActiveShape = (props: any) => {
   );
 };
 
-export default class ActiveShape extends PureComponent {
-  static demoUrl =
-    "https://codesandbox.io/s/pie-chart-with-customized-active-shape-y93si";
+export default function ActiveShape(props: Props) {
+  const { averageDecibels, maxDecibels, minDecibels } = props;
+  const [activeIndex, setActiveIndex] = useState(0);
 
-  state = {
-    activeIndex: 0,
+  const onPieEnter = (_: any, index: number) => {
+    setActiveIndex(index);
   };
 
-  onPieEnter = (_: any, index: number) => {
-    this.setState({
-      activeIndex: index,
-    });
-  };
+  const data = [
+    { name: "Average", value: averageDecibels },
+    { name: "Max", value: maxDecibels },
+    { name: "Min", value: minDecibels },
+  ];
 
-  render() {
-    return (
-      <PieChart width={300} height={200}>
-        <Pie
-          activeIndex={this.state.activeIndex}
-          activeShape={renderActiveShape}
-          data={data}
-          cx="50%"
-          cy="50%"
-          innerRadius={40}
-          outerRadius={60}
-          fill="#8884d8"
-          dataKey="value"
-          onMouseEnter={this.onPieEnter}
-        />
-      </PieChart>
-    );
-  }
+  return (
+    <PieChart width={300} height={200}>
+      <Pie
+        activeIndex={activeIndex}
+        activeShape={renderActiveShape}
+        data={data}
+        cx="50%"
+        cy="50%"
+        innerRadius={40}
+        outerRadius={60}
+        fill="#8884d8"
+        dataKey="value"
+        onMouseEnter={onPieEnter}
+      />
+    </PieChart>
+  );
 }
