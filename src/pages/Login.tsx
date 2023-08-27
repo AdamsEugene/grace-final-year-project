@@ -1,43 +1,87 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import { Form, Button, ButtonToolbar, Schema, Panel } from "rsuite";
-import { CenterPage } from "../_shared/components/@styles";
+import { useState } from "react";
+import { Form, ButtonToolbar, Button, Stack } from "rsuite";
+import { signInWithEmailAndPassword } from "firebase/auth";
+
+import { useNavigate } from "react-router-dom";
+import { auth } from "../_shared/services/fireBase";
 import Card from "../_shared/components/Card";
+// import bg from "../assets/s_l_bg.png";
 
-const { StringType } = Schema.Types;
-const model = Schema.Model({
-  name: StringType().isRequired("This field is required."),
-  email: StringType()
-    .isEmail("Please enter a valid email address.")
-    .isRequired("This field is required."),
-});
-
-function TextField(props: any) {
-  const { name, label, accepter, ...rest } = props;
-  return (
-    <Form.Group controlId={`${name}-3`}>
-      <Form.ControlLabel>{label} </Form.ControlLabel>
-      <Form.Control name={name} accepter={accepter} {...rest} />
-    </Form.Group>
-  );
-}
 export default function Login() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const navigate = useNavigate();
+
+  const login = () => {
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Signed in
+
+        const user = userCredential.user;
+        navigate("/");
+        console.log(user);
+        // ...
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log({ errorCode, errorMessage });
+      });
+  };
+
   return (
-    <CenterPage>
-      <Card
-        title={"Login"}
-        children={
-          <Form model={model}>
-            <TextField name="name" label="Username" />
-            <TextField name="email" label="Email" />
-            <ButtonToolbar>
-              <Button appearance="primary" type="submit">
-                Submit
-              </Button>
-            </ButtonToolbar>
+    <div
+      style={{
+        height: "100vh",
+        width: "100vw",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
+      <Stack
+        spacing={6}
+        direction="column"
+        alignItems="center"
+        justifyContent="center"
+      >
+        <Card title={"Login"} style={{ width: "600px" }}>
+          <Form fluid>
+            <Form.Group controlId="email">
+              <Form.ControlLabel>Email</Form.ControlLabel>
+              <Form.Control
+                name="email"
+                type="email"
+                onChange={(value) => setEmail(value)}
+              />
+              <Form.HelpText tooltip>Email is required</Form.HelpText>
+            </Form.Group>
+            <Form.Group controlId="password">
+              <Form.ControlLabel>Password</Form.ControlLabel>
+              <Form.Control
+                name="password"
+                type="password"
+                autoComplete="off"
+                onChange={(value) => setPassword(value)}
+              />
+            </Form.Group>
+            <Form.Group>
+              <ButtonToolbar>
+                <Button appearance="primary" onClick={login}>
+                  Submit
+                </Button>
+                <Button
+                  appearance="default"
+                  onClick={() => navigate("/signup")}
+                >
+                  Signup
+                </Button>
+              </ButtonToolbar>
+            </Form.Group>
           </Form>
-        }
-        style={{ width: "500px", height: "500px" }}
-      />
-    </CenterPage>
+        </Card>
+      </Stack>
+    </div>
   );
 }

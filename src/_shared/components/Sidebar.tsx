@@ -1,6 +1,5 @@
 import { Sidenav, Nav } from "rsuite";
 import DashboardIcon from "@rsuite/icons/legacy/Dashboard";
-import GroupIcon from "@rsuite/icons/legacy/Group";
 import MagicIcon from "@rsuite/icons/legacy/Magic";
 import GearCircleIcon from "@rsuite/icons/legacy/GearCircle";
 import ExitIcon from "@rsuite/icons/Exit";
@@ -25,9 +24,6 @@ const Sidebar = () => {
             >
               Home
             </Nav.Item>
-            <Nav.Item eventKey="2" icon={<GroupIcon />}>
-              User Group
-            </Nav.Item>
             <Nav.Menu eventKey="3" title="Report" icon={<MagicIcon />}>
               <Nav.Item eventKey="3-1" onClick={() => goto("/report")}>
                 Overview
@@ -44,7 +40,7 @@ const Sidebar = () => {
             </Nav.Menu>
             <Nav.Menu eventKey="4" title="Settings" icon={<GearCircleIcon />}>
               <Nav.Item eventKey="4-1" onClick={() => goto("/settings")}>
-                Settings
+                User
               </Nav.Item>
               <Nav.Item
                 eventKey="4-2"

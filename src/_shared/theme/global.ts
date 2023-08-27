@@ -5,7 +5,7 @@ const GlobalStyle = createGlobalStyle`
     /* BODY */
     body {
       background: ${(props) => props.theme.background};
-      color: ${(props) => props.theme.primary};
+      color: ${(props) => props.theme};
       font-family: 'Gilroy-Bold', sans-serif;
       font-family: 'Gilroy-Heavy', sans-serif;
       font-family: 'Gilroy-Light', sans-serif;
@@ -105,6 +105,63 @@ const GlobalStyle = createGlobalStyle`
     .rs-panel-header {
       color: ${({ theme }) => theme.subHeading};
     }
+
+     /* INPUT */
+  .rs-input {
+    background:${({ theme }) => theme.background};
+    border-color:${({ theme }) => theme.border}
+  }
+  .react-tel-input .form-control{
+     background:${({ theme }) => theme.background};
+    border-color:${({ theme }) => theme.border};
+    width:100%;
+    height: 3rem;
+    font-size:20px;
+  }
+
+  .rs-input:disabled {
+    background:${({ theme }) => theme.background.cards};
+  }
+
+  .jcWlLe .containerStyle .inputStyle {
+     background:${({ theme }) => theme.background};
+    border-color:${({ theme }) => theme.border};
+  }
+
+  .rs-picker-default .rs-picker-toggle.rs-btn {
+    background:${({ theme }) => theme.background} !important;
+    border-color:${({ theme }) => theme.border} !important;
+    border:none !important;
+  }
+
+  .rs-picker-input {
+    border-color:${({ theme }) => theme.border} !important;
+  }
+
+  .rs-picker-menu {
+    background:${({ theme }) => theme.background} !important;
+    border-color:${({ theme }) => theme.border} !important;
+  }
+
+  .rs-input-group {
+    border-color:${({ theme }) => theme.border} !important; 
+  }
+
+  .rs-input-group-addon {
+    background:${({ theme }) => theme.background.cards} !important;
+  }
+
+  /* UPLOAD */
+  .rs-uploader-draggable .rs-uploader-trigger-customize .rs-uploader-trigger-btn {
+    background:${({ theme }) => theme.background} !important;
+  }
+  
+  /* LIST */
+  .rs-list-item, .rs-list {
+    background: transparent !important;
+    border-color:${({ theme }) => theme.border} !important;
+    box-shadow:none !important;
+  }
 `;
 
 export default GlobalStyle;

@@ -14,10 +14,10 @@ import {
 import styled from "styled-components";
 
 interface IData {
-  name: string;
-  uv: number;
-  pv: number;
-  amt: number;
+  name?: string;
+  Decibels: number;
+  timestamp: number;
+  average?: number;
 }
 
 interface IProps {
@@ -37,12 +37,14 @@ const CustomTooltip = (props: any) => {
     <ToolTipWrapper>
       <MiniTitle>This Month Score Points</MiniTitle>
       <MainTitle>
-        <Circle bgColor={payload[0]?.color} /> {payload[0]?.payload?.pv}
+        <Circle bgColor={payload?.[0]?.color} />
+        {payload?.[0]?.payload?.Decibels}
       </MainTitle>
       <MainTitle>
-        <Circle bgColor={payload[1]?.color} /> {payload[0]?.payload?.uv}
+        <Circle bgColor={payload?.[1]?.color} />
+        {payload?.[0]?.payload?.timestamp}
       </MainTitle>
-      <Months>{payload[0]?.payload?.name}</Months>
+      <Months>{payload?.[0]?.payload?.name}</Months>
     </ToolTipWrapper>
   );
 };
@@ -94,34 +96,20 @@ export const Chart: React.FC<IProps> = (props) => {
             <>
               <Area
                 type="monotone"
-                dataKey="pv"
+                dataKey="Decibels"
                 stroke={stroke1}
                 strokeWidth={5}
                 fill="url(#colorUv1)"
-              />
-              <Area
-                type="monotone"
-                dataKey="uv"
-                stroke={stroke2}
-                strokeWidth={5}
-                fill="url(#colorUv2)"
               />
             </>
           ) : (
             <>
               <Line
                 type="monotone"
-                dataKey="pv"
+                dataKey="Decibels"
                 stroke={stroke1}
                 strokeWidth={5}
                 fill="url(#colorUv1)"
-              />
-              <Line
-                type="monotone"
-                dataKey="uv"
-                stroke={stroke2}
-                strokeWidth={5}
-                fill="url(#colorUv2)"
               />
             </>
           )}

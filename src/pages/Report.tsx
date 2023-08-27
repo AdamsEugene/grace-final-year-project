@@ -12,13 +12,16 @@ import {
 import Bread from "../_shared/components/Bread";
 import Card from "../_shared/components/Card";
 import { Chart } from "../_shared/components/chats/Chart";
-import { chartData } from "../_shared/components/data";
 import ActiveShape from "../_shared/components/chats/ActiveShape";
 import Needle from "../_shared/components/chats/Needle";
 import Bar from "../_shared/components/chats/Bar";
 import BottomCard from "../_shared/components/BottomCard";
+import useSound from "../_shared/hooks/useSound";
 
 export default function Report() {
+  const { soundData, aggregateSound, filterSoundByTime } = useSound();
+  // console.log(soundData);
+
   return (
     <PageWrapper>
       <Bread name="Report" />
@@ -29,7 +32,7 @@ export default function Report() {
               title="Live Sound Recording"
               children={
                 <Chart
-                  data={chartData}
+                  data={soundData}
                   type="area"
                   stroke1="#39C272"
                   stroke2="#6A54F5"

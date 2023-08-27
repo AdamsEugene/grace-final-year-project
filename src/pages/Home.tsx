@@ -1,5 +1,6 @@
 import { PageWrapper, Wrapper } from "../_shared/components/@styles";
 import Bread from "../_shared/components/Bread";
+import CustomCarrousel from "../_shared/components/CustomCarrousel";
 import Sidebar from "../_shared/components/Sidebar";
 
 export default function Home() {
@@ -8,7 +9,7 @@ export default function Home() {
       <Sidebar />
       <PageWrapper>
         <Bread />
-        Home
+        <CustomCarrousel />
       </PageWrapper>
     </Wrapper>
   );
