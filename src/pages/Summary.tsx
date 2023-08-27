@@ -34,7 +34,10 @@ export default function Summary() {
               <Card
                 title="Inference"
                 children={
-                  <BottomCard Icon={MdReport}>
+                  <BottomCard
+                    Icon={MdReport}
+                    value={aggregateSound.averageDecibels}
+                  >
                     {loading ? (
                       <LoadingWrapper>
                         <Loader size="lg" />
@@ -168,7 +171,7 @@ export default function Summary() {
                     )}
                   </Column16>
                 }
-                style={{ height: "55.4vh", width: "100%" }}
+                style={{ height: "55.4vh", width: "100%", overflowY: "auto" }}
               />
             </Stack.Item>
           </Column16>

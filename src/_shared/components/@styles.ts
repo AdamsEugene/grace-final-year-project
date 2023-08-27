@@ -62,7 +62,6 @@ export const LoadingWrapper = styled.div`
 `;
 
 export const EnvironmentInfoContainer = styled.div`
-  background-color: #f2f2f2;
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 8px;
@@ -75,7 +74,6 @@ export const EnvironmentInfoContainer = styled.div`
   }
 `;
 export const AcousticActivityContainer = styled.div`
-  background-color: #f2f2f2;
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 8px;
@@ -88,7 +86,6 @@ export const AcousticActivityContainer = styled.div`
   }
 `;
 export const AlertContainer = styled.div`
-  background-color: #f2f2f2;
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 8px;

@@ -16,7 +16,7 @@ export default function BottomCard(props: PropsWithChildren<Props>) {
           <BottomCardIcon>
             <Icon fontSize="5em" />
           </BottomCardIcon>
-          {value && <h1>{value}</h1>}
+          {value && <h1>{value?.toFixed(1)}</h1>}
         </Column16>
       ) : null}
       {children}
