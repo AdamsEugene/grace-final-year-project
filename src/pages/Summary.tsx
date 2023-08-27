@@ -1,7 +1,10 @@
 import { Loader, Stack } from "rsuite";
 import {
+  AcousticActivityContainer,
+  AlertContainer,
   Column16,
   ContentText,
+  EnvironmentInfoContainer,
   HeaderText,
   LoadingWrapper,
   NeedleWrapper,
@@ -48,10 +51,10 @@ export default function Summary() {
             </Stack.Item>
             <Stack.Item>
               <Card
-                title="Summary"
+                title="Executive Summary"
                 children={
                   <Column16>
-                    <HeaderText>Header</HeaderText>
+                    <HeaderText>Safe Environmental Condition</HeaderText>
                     {loading ? (
                       <LoadingWrapper>
                         <Loader size="lg" />
@@ -60,32 +63,105 @@ export default function Summary() {
                       <>
                         {type === "blue" ? (
                           <ContentText>
-                            The sound levels recorded have consistently remained
-                            within the established baseline, reflecting the
-                            absence of any unusual or anomalous sounds that
-                            could be associated with illegal mining or any
-                            unauthorized activities. This reassuring outcome is
-                            a testament to the effectiveness of our
-                            state-of-the-art monitoring technolo
+                            <EnvironmentInfoContainer>
+                              <p>
+                                We are pleased to inform you that the ongoing
+                                monitoring of acoustic readings has indicated a
+                                safe and secure environment within the monitored
+                                area. Our advanced microphone-based system has
+                                diligently captured and analyzed sound data,
+                                revealing no signs of alarming or suspicious
+                                activities. The sound levels recorded have
+                                consistently remained within the established
+                                baseline, reflecting the absence of any unusual
+                                or anomalous sounds that could be associated
+                                with illegal mining or any unauthorized
+                                activities.
+                              </p>
+                              <p>
+                                This reassuring outcome is a testament to the
+                                effectiveness of our state-of-the-art monitoring
+                                technology and its ability to swiftly detect and
+                                alert us to potential threats. Our commitment to
+                                maintaining the integrity and safety of the
+                                monitored area remains steadfast. We will
+                                continue to monitor the acoustic landscape with
+                                unwavering diligence, ensuring that any
+                                deviation from the established safe conditions
+                                is promptly detected and addressed.
+                              </p>
+                            </EnvironmentInfoContainer>
                           </ContentText>
                         ) : type === "green" ? (
                           <ContentText>
-                            While the acoustic readings are not indicating an
-                            alarming or critical situation, the moderate
-                            activity recorded suggests a heightened presence of
-                            sound sources within the monitored region. This
-                            could potentially be attributed to various factors,
-                            such as natural phenomena or non-threatening human
-                            activities.
+                            <AcousticActivityContainer>
+                              <header>Moderate Environmental condition</header>
+                              <p>
+                                We would like to inform you that our vigilant
+                                monitoring system has detected moderate acoustic
+                                activity within the monitored area of the Atewa
+                                forest. Our sophisticated microphone-based
+                                technology has been diligently capturing and
+                                analyzing sound data, revealing a moderate level
+                                of acoustic activity that requires attention.
+                                While the acoustic readings are not indicating
+                                an alarming or critical situation, the moderate
+                                activity recorded suggests a heightened presence
+                                of sound sources within the monitored region.
+                                This could potentially be attributed to various
+                                factors, such as natural phenomena or
+                                non-threatening human activities.
+                              </p>
+                              <p>
+                                Our commitment to ensuring the safety and
+                                integrity of the forest remains paramount. We
+                                are closely monitoring the situation and will
+                                continue to assess any developments that might
+                                warrant further investigation or action. The
+                                proactive nature of our monitoring system
+                                empowers us to promptly respond to changing
+                                conditions.
+                              </p>
+                            </AcousticActivityContainer>
                           </ContentText>
                         ) : (
                           <ContentText>
-                            This critical acoustic activity is indicative of
-                            potentially harmful and unlawful activities,
-                            possibly related to illegal mining operations.The
-                            readings from our advanced microphone technology
-                            have registered an alarming level of sound that
-                            requires immediate attention and action.
+                            <AlertContainer>
+                              <header>
+                                Urgent Alert: Critical Environmental Condition
+                                Detected"
+                              </header>
+                              <p className="alert-text">
+                                We want to urgently bring to your notice that
+                                our state-of-the-art monitoring system has
+                                detected a critical acoustic activity within the
+                                confines of the Atewa forest. The readings from
+                                our advanced microphone technology have
+                                registered an alarming level of sound that
+                                requires immediate attention and action.
+                              </p>
+                              <p className="alert-text">
+                                This critical acoustic activity is indicative of
+                                potentially harmful and unlawful activities,
+                                possibly related to illegal mining operations.
+                                Our monitoring system's sensitivity and accuracy
+                                are designed to detect such anomalies promptly,
+                                enabling us to respond swiftly to threats that
+                                could compromise the forest's integrity.
+                              </p>
+                              <p className="alert-text">
+                                It is imperative that all relevant authorities,
+                                personnel, and concerned parties mobilize
+                                immediately to address this situation. The
+                                preservation of the Atewa forest's natural
+                                beauty, biodiversity, and environmental balance
+                                is at risk, and swift intervention is necessary
+                                to prevent further damage.
+                              </p>
+                            </AlertContainer>
+                            ); export default AlertMessage; You can then use the
+                            AlertMessage component in your React application to
+                            display the styled alert messages.
                           </ContentText>
                         )}
                       </>

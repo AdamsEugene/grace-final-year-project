@@ -59,3 +59,43 @@ export const LoadingWrapper = styled.div`
   margin-top: 42px;
   margin-right: 42px;
 `;
+
+export const EnvironmentInfoContainer = styled.div`
+background-color: #f2f2f2;
+padding: 20px;
+border: 1px solid #ccc;
+border-radius: 8px;
+margin: 20px 0;
+
+p {
+  margin-bottom: 15px;
+  font-size: 16px;
+  line-height: 1.6;
+}
+`;
+export const AcousticActivityContainer = styled.div`
+background-color: #f2f2f2;
+padding: 20px;
+border: 1px solid #ccc;
+border-radius: 8px;
+margin: 20px 0;
+
+p {
+  margin-bottom: 15px;
+  font-size: 16px;
+  line-height: 1.6;
+}
+`;
+export const AlertContainer = styled.div`
+background-color: #f2f2f2;
+padding: 20px;
+border: 1px solid #ccc;
+border-radius: 8px;
+margin: 20px 0;
+
+.alert-text {
+  margin-bottom: 15px;
+  font-size: 16px;
+  line-height: 1.6;
+}
+`;
