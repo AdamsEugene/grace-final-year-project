@@ -3,11 +3,13 @@ import { styled } from "styled-components";
 export const Wrapper = styled.div`
   display: flex;
   gap: 16px;
+  height: 100vh;
+  width: 100vw;
 `;
 
 export const PageWrapper = styled.div`
-  width: 100vw;
-  height: 100vh;
+  width: calc(100vw - 64px);
+  height: calc(100vh - 64px);
   padding: 32px;
 `;
 

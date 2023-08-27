@@ -118,7 +118,7 @@ export default function Report() {
                   )}
                 </BottomCard>
               }
-              style={{ height: "28vh" }}
+              style={{ height: "28vh", width: "100%" }}
             />
           </Stack.Item>
           <Stack.Item flex={1}>
@@ -135,7 +135,7 @@ export default function Report() {
                   )}
                 </BottomCard>
               }
-              style={{ height: "28vh" }}
+              style={{ height: "28vh", width: "100%" }}
             />
           </Stack.Item>
           <Stack.Item flex={1}>
@@ -157,7 +157,7 @@ export default function Report() {
                   )}
                 </BottomCard>
               }
-              style={{ height: "28vh" }}
+              style={{ height: "28vh", width: "100%" }}
             />
           </Stack.Item>
         </Stack>

@@ -35,7 +35,7 @@ export default function ReportView({ soundData, aggregateSound }: Props) {
     return soundData.map((d, i) => ({
       timestamp: moment(d.timestamp).format("MMMM Do YYYY, h:mm:ss a"),
       id: i + 1,
-      remark: d.Decibels >= 80 ? "Loud" : d.Decibels <= 50 ? "Okay" : "Low",
+      remark: d.Decibels >= 80 ? "Loud" : d.Decibels >= 50 ? "Okay" : "Low",
       Decibels: d.Decibels,
     }));
   }, [soundData]);

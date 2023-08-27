@@ -39,8 +39,11 @@ const Sidebar = () => {
   };
 
   return (
-    <div style={{ width: 240 }}>
-      <Sidenav defaultOpenKeys={["3"]} style={{ height: "100vh", width: 240 }}>
+    <div style={{ width: 200 }}>
+      <Sidenav
+        defaultOpenKeys={["3"]}
+        style={{ height: "calc(100vh)", width: 200 }}
+      >
         <Sidenav.Body>
           <Nav activeKey="1">
             <Nav.Item

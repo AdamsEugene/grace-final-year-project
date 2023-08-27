@@ -63,7 +63,7 @@ export default function ObjectDetect({
           width={"100%"}
           ref={imgRef}
           crossOrigin="anonymous"
-          style={{ height: long ? "730px" : "440px" }}
+          style={{ height: long ? "690px" : "420px" }}
         />
         <canvas
           ref={canvasRef}
@@ -76,11 +76,11 @@ export default function ObjectDetect({
             textAlign: "center",
             zIndex: 8,
             width: "100%",
-            height: long ? 730 : 440,
+            height: long ? 690 : 420,
           }}
         />
       </>
-      <img id="img" height={long ? 730 : 440} hidden crossOrigin="anonymous" />
+      <img id="img" height={long ? 690 : 420} hidden crossOrigin="anonymous" />
     </ImageWrapper>
   );
 }
