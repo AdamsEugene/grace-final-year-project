@@ -28,8 +28,7 @@ export default function Report() {
     useImage();
 
   const _img = document.getElementById("img") as HTMLImageElement;
-  if (_img)
-    _img.src = `https://tse4.mm.bing.net/th?id=OIP.xSCWDcWUki2Nsq08JJSVigHaE2&pid=Api&P=0&h=180`;
+  if (_img) _img.src = `data:image/png;base64,${photos[photos.length - 1]}`;
 
   return (
     <PageWrapper>
