@@ -61,7 +61,7 @@ export default function useSound() {
   const aggregateSound = {
     maxDecibels,
     minDecibels,
-    averageDecibels: (averageDecibels / 100) * 150,
+    averageDecibels: averageDecibels ,
   };
 
   /* eslint-disable @typescript-eslint/no-explicit-any */
