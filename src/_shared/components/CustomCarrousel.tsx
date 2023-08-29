@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { useEffect, useState } from "react";
 import { styled } from "styled-components";
 import { carrouselData } from "./data";
@@ -20,6 +21,8 @@ export default function CustomCarrousel() {
       style={{
         backgroundImage: `url(../src/assets/galaImages/${carrouselData[index].image})`,
         backgroundSize: "cover",
+        // @ts-ignore
+        crossOrigin: "anonymous",
       }}
     >
       <Content>{carrouselData[index].content}</Content>
