@@ -32,12 +32,11 @@ export default function Report() {
     open,
   } = useSound();
 
-  const { model, predictionModel, loadingImg, getPredictions, result } =
+  const { photos, model, predictionModel, loadingImg, getPredictions, result } =
     useImage();
 
   const _img = document.getElementById("img") as HTMLImageElement;
-  if (_img)
-    _img.src = `https://media.istockphoto.com/id/1368965646/photo/multi-ethnic-guys-and-girls-taking-selfie-outdoors-with-backlight-happy-life-style-friendship.jpg?s=612x612&w=0&k=20&c=qYST1TAGoQGV_QnB_vMd4E8jdaQUUo95Sa2JaKSl_-4=`;
+  if (_img) _img.src = `data:image/png;base64,${photos[photos.length - 1]}`;
 
   return (
     <PageWrapper>
@@ -96,7 +95,9 @@ export default function Report() {
                         />
                       </div>
                       <Avatar
-                        src={`https://media.istockphoto.com/id/1368965646/photo/multi-ethnic-guys-and-girls-taking-selfie-outdoors-with-backlight-happy-life-style-friendship.jpg?s=612x612&w=0&k=20&c=qYST1TAGoQGV_QnB_vMd4E8jdaQUUo95Sa2JaKSl_-4=`}
+                        src={`data:image/png;base64,${
+                          photos[photos.length - 1]
+                        }`}
                         alt="@superman66"
                         style={{ height: "440px", width: "100%" }}
                       />
