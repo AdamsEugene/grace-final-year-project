@@ -20,9 +20,17 @@ import BottomCard from "../_shared/components/BottomCard";
 import useSound from "../_shared/hooks/useSound";
 import useImage from "../_shared/hooks/useImage";
 import ObjectDetect from "../_shared/components/ObjectDetect";
+import StyledModal from "../_shared/components/StyledModal";
 
 export default function Report() {
-  const { soundData, aggregateSound, handleDataChange, loading } = useSound();
+  const {
+    soundData,
+    aggregateSound,
+    handleDataChange,
+    loading,
+    handleClose,
+    open,
+  } = useSound();
 
   const { photos, model, predictionModel, loadingImg, getPredictions, result } =
     useImage();
@@ -32,6 +40,7 @@ export default function Report() {
 
   return (
     <PageWrapper>
+      <StyledModal handleClose={handleClose} open={open} />
       <Bread name="Report" />
       <Column16>
         <Stack spacing={16}>

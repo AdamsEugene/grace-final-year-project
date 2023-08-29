@@ -16,6 +16,10 @@ export default function useSound() {
   const [type, setType] = useState<ContentType>("red");
   const [loading, setLoading] = useState(false);
 
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
   useEffect(() => {
     setLoading(true);
     const readSoundDecibels = ref(database, "Data/");
@@ -28,6 +32,10 @@ export default function useSound() {
         }));
         setAllData(newDataArray);
         setSoundData(newDataArray.slice(-50));
+        const lastSound = newDataArray.slice(-1);
+        if (lastSound[0].Decibels >= 50) {
+          handleOpen();
+        }
       }
       setLoading(false);
     });
@@ -61,7 +69,7 @@ export default function useSound() {
   const aggregateSound = {
     maxDecibels,
     minDecibels,
-    averageDecibels: averageDecibels ,
+    averageDecibels: averageDecibels,
   };
 
   /* eslint-disable @typescript-eslint/no-explicit-any */
@@ -93,5 +101,13 @@ export default function useSound() {
     );
   }, [averageDecibels]);
 
-  return { soundData, aggregateSound, handleDataChange, type, loading };
+  return {
+    soundData,
+    aggregateSound,
+    handleDataChange,
+    type,
+    loading,
+    handleClose,
+    open,
+  };
 }
