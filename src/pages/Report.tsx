@@ -20,18 +20,28 @@ import BottomCard from "../_shared/components/BottomCard";
 import useSound from "../_shared/hooks/useSound";
 import useImage from "../_shared/hooks/useImage";
 import ObjectDetect from "../_shared/components/ObjectDetect";
+import StyledModal from "../_shared/components/StyledModal";
 
 export default function Report() {
-  const { soundData, aggregateSound, handleDataChange, loading } = useSound();
+  const {
+    soundData,
+    aggregateSound,
+    handleDataChange,
+    loading,
+    handleClose,
+    open,
+  } = useSound();
 
-  const { photos, model, predictionModel, loadingImg, getPredictions, result } =
+  const { model, predictionModel, loadingImg, getPredictions, result } =
     useImage();
 
   const _img = document.getElementById("img") as HTMLImageElement;
-  if (_img) _img.src = `data:image/png;base64,${photos[photos.length - 1]}`;
+  if (_img)
+    _img.src = `https://media.istockphoto.com/id/1368965646/photo/multi-ethnic-guys-and-girls-taking-selfie-outdoors-with-backlight-happy-life-style-friendship.jpg?s=612x612&w=0&k=20&c=qYST1TAGoQGV_QnB_vMd4E8jdaQUUo95Sa2JaKSl_-4=`;
 
   return (
     <PageWrapper>
+      <StyledModal handleClose={handleClose} open={open} />
       <Bread name="Report" />
       <Column16>
         <Stack spacing={16}>
@@ -86,9 +96,7 @@ export default function Report() {
                         />
                       </div>
                       <Avatar
-                        src={`data:image/png;base64,${
-                          photos[photos.length - 1]
-                        }`}
+                        src={`https://media.istockphoto.com/id/1368965646/photo/multi-ethnic-guys-and-girls-taking-selfie-outdoors-with-backlight-happy-life-style-friendship.jpg?s=612x612&w=0&k=20&c=qYST1TAGoQGV_QnB_vMd4E8jdaQUUo95Sa2JaKSl_-4=`}
                         alt="@superman66"
                         style={{ height: "440px", width: "100%" }}
                       />
