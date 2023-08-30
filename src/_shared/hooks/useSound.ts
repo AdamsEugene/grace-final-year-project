@@ -33,7 +33,7 @@ export default function useSound() {
         setAllData(newDataArray);
         setSoundData(newDataArray.slice(-50));
         const lastSound = newDataArray.slice(-1);
-        if (lastSound[0].Decibels >= 50) {
+        if (lastSound[0].Decibels >= 70) {
           handleOpen();
         }
       }
